@@ -4,12 +4,12 @@ module Api
 
       def index
         @products = Product.all
-        respond_to :json
+        # respond_to :json
         # respond_to :html, :json
-        # respond_to do |format|
-        #   format.html
-        #   format.json { render json: @products }
-        # end
+        respond_to do |format|
+          format.html
+          format.json { render json: @products }
+        end
       end
 
       def new
