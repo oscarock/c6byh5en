@@ -22,12 +22,12 @@ module Api
             render json: {
               status: 201
               # product: product
-            }.to_json
+            }
         else
           render json: {
             status: 422,
             errors: product.errors
-          }.to_json
+          }
         end
       end
 
