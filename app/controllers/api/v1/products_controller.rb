@@ -13,15 +13,15 @@ module Api
       end
 
       def new
-        # @product = Product.new
+        @product = Product.new
       end
 
       def create
          product = Product.new(product_params)
         if product.save
             render json: {
-              status: 201,
-              product: product
+              status: 201
+              # product: product
             }.to_json
         else
           render json: {
