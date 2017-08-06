@@ -13,11 +13,22 @@ module Api
       end
 
       def new
-        @product = Product.new
+        # @product = Product.new
       end
 
       def create
-        @product = Product.create(product_params)
+         product = Product.new(product_params)
+        if product.save
+            render json: {
+              status: 201,
+              product: product
+            }.to_json
+        else
+          render json: {
+            status: 422,
+            errors: product.errors
+          }.to_json
+        end
       end
 
       def edit
