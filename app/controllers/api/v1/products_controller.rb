@@ -36,7 +36,17 @@ module Api
       end
 
       def update
-        @product = Product.update(params[:id], product_params)
+        product = Product.update(params[:id], product_params)
+        if product.update(product_params)
+            render json:{
+                status: 200,
+            }
+        else
+            render json:{
+                status: 422,
+                errors: product.errors
+            }
+        end
       end
 
       private
