@@ -36,10 +36,11 @@ module Api
       end
 
       def update
-        product = Product.update(params[:id], product_params)
+        # product = Product.update(params[:id], product_params)
+        product = Product.find(params[:id])
         if product.update(product_params)
             render json:{
-                status: 200,
+                status: 200
             }
         else
             render json:{
@@ -47,6 +48,14 @@ module Api
                 errors: product.errors
             }
         end
+      end
+
+      def destroy
+        product = Product.find(params[:id])
+        product.destroy
+        render json:{
+            status: 204
+        }
       end
 
       private
