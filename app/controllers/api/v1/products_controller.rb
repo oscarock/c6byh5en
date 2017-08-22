@@ -1,7 +1,6 @@
 module Api
   module V1
     class ProductsController < ApplicationController
-
       def index
         @products = Product.all
         # respond_to :json
@@ -17,12 +16,12 @@ module Api
       end
 
       def create
-         product = Product.new(product_params)
+        product = Product.new(product_params)
         if product.save
-            render json: {
-              status: 201
-              # product: product
-            }
+          render json: {
+            created: 201
+            # product: product
+          }
         else
           render json: {
             status: 422,
@@ -39,22 +38,22 @@ module Api
         # product = Product.update(params[:id], product_params)
         product = Product.find(params[:id])
         if product.update(product_params)
-            render json:{
-                status: 200
-            }
+          render json: {
+            status: 200
+          }
         else
-            render json:{
-                status: 422,
-                errors: product.errors
-            }
+          render json: {
+            status: 422,
+            errors: product.errors
+          }
         end
       end
 
       def destroy
         product = Product.find(params[:id])
         product.destroy
-        render json:{
-            status: 204
+        render json: {
+          status: 204
         }
       end
 
