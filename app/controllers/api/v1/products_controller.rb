@@ -18,6 +18,7 @@ module Api
       def create
         product = Product.new(product_params)
         if product.save
+          201
           render json: {
             status: 201
             # product: product
@@ -38,14 +39,16 @@ module Api
         # product = Product.update(params[:id], product_params)
         product = Product.find(params[:id])
         if product.update(product_params)
-          render json: {
-            status: 200
-          }
+          status 200
+          render json:{
+            status: "ok"
+          }.to_json
         else
+          status 422
           render json: {
-            status: 422,
+            # status: 422,
             errors: product.errors
-          }
+          }.to_json
         end
       end
 
