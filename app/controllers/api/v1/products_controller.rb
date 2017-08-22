@@ -26,7 +26,7 @@ module Api
           render json: {
             status: 422,
             errors: product.errors
-          }
+          }.to_json
         end
       end
 
