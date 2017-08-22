@@ -19,9 +19,9 @@ module Api
         product = Product.new(product_params)
         if product.save
           render json: {
-            created: 201
+            status: 201
             # product: product
-          }
+          }.to_json
         else
           render json: {
             status: 422,
