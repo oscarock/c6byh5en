@@ -18,15 +18,10 @@ module Api
       def create
         product = Product.new(product_params)
         if product.save
-          render json: {
-            status: 201
-            # product: product
-          }.to_json
+         json_response(product, :created)
         else
-          render json: {
-            status: 422,
-            errors: product.errors
-          }.to_json
+          @error = {error: product.errors.full_messages}
+          json_response(@errors, 422)
         end
       end
 
